@@ -1,0 +1,8 @@
+GIT CLONE https://github.com/g-bvr base main
+PLUGIN COMPILE base/src/main/java
+PLUGIN ENABLE org.jkube.gitbeaver.base.BasePlugin
+SET plugin org.jkube.gitbeaver.PubSubPlugin
+PLUGIN ENABLE ${plugin}
+LOG Documenting plugin ${plugin}
+DOCUMENT ${plugin} INTO doc
+CLEANUP base
