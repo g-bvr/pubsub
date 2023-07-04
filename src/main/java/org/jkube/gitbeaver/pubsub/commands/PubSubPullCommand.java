@@ -23,7 +23,7 @@ public class PubSubPullCommand extends AbstractCommand {
 
     public PubSubPullCommand() {
         super("Pull messages from pubsub and store into files");
-        commandline("PUBSUB PULL FROM "+SUBSCRIPTION+" In PROJECT "+PROJECT+" INTO "+FOLDER);
+        commandline("PUBSUB PULL "+SUBSCRIPTION+" IN PROJECT "+PROJECT+" INTO "+FOLDER);
         argument(SUBSCRIPTION, "The name of the subscription from which messages will be pulled");
         argument(PROJECT, "The id of the project in which the subscription is located");
         argument(FOLDER, "The path to a folder (relative to current workspace) into which messages are written as individual files");
@@ -65,6 +65,14 @@ public class PubSubPullCommand extends AbstractCommand {
 
     private String format(Timestamp publishTime) {
         return Timestamps.toString(publishTime);
+    }
+
+    public static final void main(String... args) {
+        new PubSubPullCommand().execute(null, new WorkSpace("."), Map.of(
+                SUBSCRIPTION, "gitbeaver",
+                PROJECT, "breuninger-core-provisioning",
+                FOLDER, "pubsubtest"
+        ));
     }
 
 }
