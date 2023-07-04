@@ -1,7 +1,5 @@
 package org.jkube.gitbeaver.pubsub.commands;
 
-import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.Timestamps;
 import com.google.pubsub.v1.PubsubMessage;
 import org.jkube.gitbeaver.AbstractCommand;
 import org.jkube.gitbeaver.WorkSpace;
@@ -54,7 +52,7 @@ public class PubSubPullCommand extends AbstractCommand {
         FileUtil.store(folder.resolve("text"), message.getData().toStringUtf8());
         FileUtil.store(folder.resolve("attributes"), format(message.getAttributesMap()));
         FileUtil.store(folder.resolve("ordering-key"), message.getOrderingKey());
-        FileUtil.store(folder.resolve("publish-time"), format(message.getPublishTime()));
+        //FileUtil.store(folder.resolve("publish-time"), format(message.getPublishTime()));
         FileUtil.store(folder.resolve("all-fields"), format(message.getAllFields()));
         FileUtil.store(folder.resolve("unknown-fields"), format(message.getUnknownFields().asMap()));
     }
@@ -63,9 +61,9 @@ public class PubSubPullCommand extends AbstractCommand {
         return map.entrySet().stream().map(e -> e.getKey() + " = "+e.getValue()).collect(Collectors.toList());
     }
 
-    private String format(Timestamp publishTime) {
+   /* private String format(Timestamp publishTime) {
         return Timestamps.toString(publishTime);
-    }
+    }*/
 
     public static final void main(String... args) {
         new PubSubPullCommand().execute(null, new WorkSpace("."), Map.of(
