@@ -54,18 +54,27 @@ body {
 </head>
 <body>
 
-<h1 id="myheader">PubSubPlugin</h1>
+<h1 id="myheader">PubSubListenCommand</h1>
 <h2>Purpose</h2>
-listens to pubsub messages and triggers corresponding script executions
-
-<h2>Commands</h2>
+Set up a message receiver fot specified pubsub subscription that triggers execution of a script
+<h2>Variants</h2>
 <table id="mytable1">
-<tr><th>Command</th><th>Description</th></tr>
-  <tr><td><a href="PubSubPullCommand.html">PubSubPullCommand</a></td><td>Pull messages from pubsub and store into files</td></tr>
-  <tr><td><a href="PubSubSetProjectCommand.html">PubSubSetProjectCommand</a></td><td>Set the project from which pubsub messages will be received</td></tr>
-  <tr><td><a href="PubSubListenCommand.html">PubSubListenCommand</a></td><td>Set up a message receiver fot specified pubsub subscription that triggers execution of a script</td></tr>
-  <tr><td><a href="PubSubStopCommand.html">PubSubStopCommand</a></td><td>Shutdown pubsub (no more messages will be received server shuts down after all running executions have terminated)</td></tr>
+<tr><th>Usage</th><th>Description</th></tr>
+  <tr><td>SUBSCRIBE subscription script *</td><td>triggers script in current workspace</td></tr>
+  <tr><td>SUBSCRIBE subscription IN folder script *</td><td>triggers script in sub-workspace specified by given folder</td></tr>
 </table>
+
+<h2>Arguments</h2>
+
+<table id="mytable2">
+<tr><th>Argument</th><th>Value</th></tr>
+  <tr><td>subscription</td><td>The name of the subscription from which messages will be received</td></tr>
+  <tr><td>script</td><td>The path to the script (relative to current workspace, not the execution workspace) that gets executed when trigger receives a GET request</td></tr>
+  <tr><td>folder</td><td>The path to a folder (relative to current workspace) that serves as execution workspace (the executed script can be located outside this folder)</td></tr>
+  <tr><td>*</td><td>Names of arguments expected in messages</td></tr>
+</table>
+<h2>Plugin</h2>
+This command is defined in <a href="PubSubPlugin.html">PubSubPlugin</a>
 </body>
 </html>
 

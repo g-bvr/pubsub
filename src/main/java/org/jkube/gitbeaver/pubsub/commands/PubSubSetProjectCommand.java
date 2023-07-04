@@ -2,7 +2,7 @@ package org.jkube.gitbeaver.pubsub.commands;
 
 import org.jkube.gitbeaver.SimpleCommand;
 import org.jkube.gitbeaver.WorkSpace;
-import org.jkube.gitbeaver.pubsub.PubSub;
+import org.jkube.gitbeaver.pubsub.PubSubAsync;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class PubSubSetProjectCommand extends SimpleCommand {
     @Override
     public void execute(WorkSpace workSpace, Map<String, String> arguments) {
         String project = arguments.get(PROJECT);
-        PubSub.init(project);
+        PubSubAsync.init(project);
         log("Receiving pubsub messages from project {}", project);
     }
 }

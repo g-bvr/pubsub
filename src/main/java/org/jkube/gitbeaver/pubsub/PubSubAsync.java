@@ -16,11 +16,11 @@ import java.util.*;
 
 import static org.jkube.logging.Log.onException;
 
-public class PubSub {
+public class PubSubAsync {
 
     public static final SimpleDateFormat RUN_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
-    private final static PubSub SINGLETON = new PubSub();
+    private final static PubSubAsync SINGLETON = new PubSubAsync();
 
     private final ExecutionQueue queue = new ExecutionQueue();
     private final List<Subscriber> subscriberList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class PubSub {
     }
 
     public static void shutdown() {
-        SINGLETON.subscriberList.forEach(PubSub::stopReceiving);
+        SINGLETON.subscriberList.forEach(PubSubAsync::stopReceiving);
     }
 
     private static void stopReceiving(Subscriber s) {
@@ -113,6 +113,26 @@ public class PubSub {
 
     private static String createCallId(String subscription, String messageText) {
         return subscription+"-"+messageText.replaceAll(" ", "-");
+    }
+
+
+    public void readMessages(String subscription, WorkSpace scriptWorkspace, String script, List<String> arguments, Map<String, String> variables) {
+        Expect.notNull(project).elseFail("PUBSUB SET PROJECT must be called before calling PUBSUB LISTEN");
+        ProjectSubscriptionName subscriptionName = ProjectSubscriptionName.of(project, subscription);
+
+        // clone the variables twice, first to decouple from input, second to decouple separate runs
+        Map<String, String> clonedVariables = clone(variables);
+
+        // Instantiate an asynchronous message receiver.
+        MessageReceiver receiver = (message, consumer) -> handleMessage(message, consumer, scriptWorkspace, script, subscription, arguments, clonedVariables);
+        Subscriber subscriber = Subscriber.newBuilder(subscriptionName, receiver).build();
+        // Start the subscriber.
+        subscriber.startAsync().awaitRunning();
+        System.out.printf("Listening for messages on %s:\n", subscriptionName);
+        // Allow the subscriber to run for 30s unless an unrecoverable error occurs.
+        //subscriber.awaitTerminated();
+        //System.out.printf("Done listening");
+        subscriberList.add(subscriber);
     }
 
 }

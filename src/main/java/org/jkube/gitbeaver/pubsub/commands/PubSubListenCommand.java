@@ -2,7 +2,7 @@ package org.jkube.gitbeaver.pubsub.commands;
 
 import org.jkube.gitbeaver.AbstractCommand;
 import org.jkube.gitbeaver.WorkSpace;
-import org.jkube.gitbeaver.pubsub.PubSub;
+import org.jkube.gitbeaver.pubsub.PubSubAsync;
 
 import java.util.List;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class PubSubListenCommand extends AbstractCommand {
         String script = arguments.get(SCRIPT);
         List<String> argNames = List.of(arguments.get(REST).split(" "));
         WorkSpace scriptWorkspace = arguments.containsKey(FOLDER) ? workSpace.getSubWorkspace(arguments.get(FOLDER)) : workSpace;
-        PubSub.startReceiving(subscription, scriptWorkspace, script, argNames, variables);
+        PubSubAsync.startReceiving(subscription, scriptWorkspace, script, argNames, variables);
         log("Receiving pubsub messages from subscription "+subscription+" triggering script "+script+" in workspace "+workSpace.getWorkdir()+" with arguments "+argNames);
     }
 }
