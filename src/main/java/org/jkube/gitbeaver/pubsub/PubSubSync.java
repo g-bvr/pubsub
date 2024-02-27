@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PubSubSync {
 
-    private static final int MAX_NUM_MESSAGES = 10;
+    private static final int MAX_NUM_MESSAGES = 1;
     private static final int MAX_MESSAGE_SIZE_MB = 20;
 
     public static final SubscriberStubSettings SUBSCRIBER_SETTINGS =
