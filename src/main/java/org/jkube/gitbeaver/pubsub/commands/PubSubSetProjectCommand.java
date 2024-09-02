@@ -6,7 +6,7 @@ import org.jkube.gitbeaver.pubsub.PubSubAsync;
 
 import java.util.Map;
 
-import static org.jkube.logging.Log.log;
+import static org.jkube.gitbeaver.logging.Log.log;
 
 /**
  * Usage: resolve source target

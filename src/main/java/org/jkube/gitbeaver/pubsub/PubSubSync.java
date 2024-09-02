@@ -4,7 +4,7 @@ import com.google.cloud.pubsub.v1.stub.GrpcSubscriberStub;
 import com.google.cloud.pubsub.v1.stub.SubscriberStub;
 import com.google.cloud.pubsub.v1.stub.SubscriberStubSettings;
 import com.google.pubsub.v1.*;
-import org.jkube.logging.Log;
+import org.jkube.gitbeaver.logging.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;

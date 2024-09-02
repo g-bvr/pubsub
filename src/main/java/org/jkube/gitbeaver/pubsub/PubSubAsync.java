@@ -8,13 +8,13 @@ import com.google.pubsub.v1.PubsubMessage;
 import org.jkube.gitbeaver.ExecutionQueue;
 import org.jkube.gitbeaver.GitBeaver;
 import org.jkube.gitbeaver.WorkSpace;
-import org.jkube.logging.Log;
-import org.jkube.util.Expect;
+import org.jkube.gitbeaver.logging.Log;
+import org.jkube.gitbeaver.util.Expect;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.jkube.logging.Log.onException;
+import static org.jkube.gitbeaver.logging.Log.onException;
 
 public class PubSubAsync {
 

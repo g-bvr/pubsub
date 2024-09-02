@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.jkube.gitbeaver.CommandParser.REST;
-import static org.jkube.logging.Log.log;
+import static org.jkube.gitbeaver.logging.Log.log;
 
 public class PubSubListenCommand extends AbstractCommand {
 

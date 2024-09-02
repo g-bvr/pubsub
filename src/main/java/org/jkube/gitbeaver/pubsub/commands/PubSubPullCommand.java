@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.jkube.logging.Log.log;
+import static org.jkube.gitbeaver.logging.Log.log;
 
 public class PubSubPullCommand extends AbstractCommand {
 
