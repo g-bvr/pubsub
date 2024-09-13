@@ -8,7 +8,7 @@
     <artifactId>gitbeaver-pubsub</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <gitbeaver.version>0.0.1</gitbeaver.version>
+        <gitbeaver.version>0.2.2</gitbeaver.version>
         <junit.version>5.5.2</junit.version>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
